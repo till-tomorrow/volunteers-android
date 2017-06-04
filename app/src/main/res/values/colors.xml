@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#54bceb</color>
+    <color name="colorSecondary">#c1D82F</color>
     <color name="colorPrimaryDark">#101820</color>
-    <color name="colorAccent">#0076a9</color>
+    <color name="colorAccent">#0076A9</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_black">#000000</color>
+    <color name="facebook_signin">#3B5998</color>
+    <color name="google_signin">#DD4B39</color>
+    <color name="light_grey" >#B1B3B3</color>
 </resources>
 

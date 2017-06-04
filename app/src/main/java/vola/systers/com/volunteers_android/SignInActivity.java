@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -16,7 +18,13 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import org.json.JSONObject;
+import java.util.Arrays;
 
  /*
   * User can SignIn manually or through social in this activity.
@@ -30,11 +38,14 @@ public class SignInActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = SignInActivity.class.getSimpleName();
-    private static final int RC_SIGN_IN = 007;
-
+    private static final int RC_GOOGLE_SIGN_IN = 007;
+    private static final int RC_FACEBOOK_SIGN_IN=64206;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
     private Button btnSignIn;
+    LoginButton btnLogin;
+    CallbackManager callbackManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +53,7 @@ public class SignInActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_signin);
 
         btnSignIn = (Button) findViewById(R.id.btn_sign_in_google);
-
+        btnLogin=(LoginButton) findViewById(R.id.usersettings_fragment_login_button) ;
         btnSignIn.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -53,13 +64,44 @@ public class SignInActivity extends AppCompatActivity implements
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        callbackManager = CallbackManager.Factory.create();
+        btnLogin.setReadPermissions(Arrays.asList("public_profile", "email"));
+        btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("Response", response.toString());
+                          }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields","id,name,email,gender,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
 
-    private void signIn() {
+
+    private void googleSignIn() {
 
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
 
 
     }
@@ -75,7 +117,7 @@ public class SignInActivity extends AppCompatActivity implements
         //                });
         //    }
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    private void handlegoogleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully.
@@ -104,13 +146,14 @@ public class SignInActivity extends AppCompatActivity implements
         }
     }
 
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
         switch (id) {
             case R.id.btn_sign_in_google:
-                signIn();
+                googleSignIn();
                 break;
 
                    }
@@ -121,10 +164,14 @@ public class SignInActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_GOOGLE_SIGN_IN) {
             Log.d(TAG, "signin");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            handlegoogleSignInResult(result);
+        }
+        else if( requestCode == RC_FACEBOOK_SIGN_IN){
+            super.onActivityResult(requestCode, resultCode, data);
+            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -138,7 +185,7 @@ public class SignInActivity extends AppCompatActivity implements
             // and the GoogleSignInResult will be available instantly.
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
+            handlegoogleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.
@@ -148,7 +195,7 @@ public class SignInActivity extends AppCompatActivity implements
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
                     hideProgressDialog();
-                    handleSignInResult(googleSignInResult);
+                    handlegoogleSignInResult(googleSignInResult);
                 }
             });
         }

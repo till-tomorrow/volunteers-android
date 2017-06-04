@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fb="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true">
@@ -31,20 +32,19 @@
         android:textStyle="bold"
         android:drawableLeft="@drawable/google_plus"/>
 
-    <Button
-        android:id="@+id/btn_sign_in_facebook"
+
+    <com.facebook.login.widget.LoginButton
+        xmlns:fb="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/usersettings_fragment_login_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="30dp"
-        android:background="@color/facebook_signin"
-        android:text="@string/btn_signin_with_facebook"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textColor="@color/text_white"
-        android:textStyle="bold"
+        fb:com_facebook_login_text="@string/btn_signin_with_facebook"
+        fb:com_facebook_logout_text="Logout"
+        style="@style/FacebookLoginButton" />
 
-        android:drawableLeft="@drawable/facebook"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

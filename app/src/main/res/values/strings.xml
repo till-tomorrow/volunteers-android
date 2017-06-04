@@ -7,6 +7,9 @@
 
     <string name="btn_signin_with_facebook">Sign in with Facebook</string>
     <string name="btn_signin_with_google">Sign in with Google</string>
-<string name="btn_revoke_access">Revoke Access</string>
+    <string name="btn_revoke_access">Revoke Access</string>
     <string name="loading">Loading</string>
+    <string name="facebook_app_id">1916034148612140</string>
+    <string name="fb_login_protocol_scheme">fb1916034148612140</string>
+
 </resources>

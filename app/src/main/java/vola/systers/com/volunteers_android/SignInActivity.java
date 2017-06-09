@@ -141,9 +141,14 @@ public class SignInActivity extends AppCompatActivity implements
             Log.e(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " +personPhotoUrl);
 
+            Intent intent = new Intent(SignInActivity.this,Menu.class);
+            startActivity(intent);
+
         } else {
             // UnAuthenticated.
+
         }
+
     }
 
 

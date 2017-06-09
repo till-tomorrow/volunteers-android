@@ -12,4 +12,36 @@
     <string name="facebook_app_id">1916034148612140</string>
     <string name="fb_login_protocol_scheme">fb1916034148612140</string>
 
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Events</item>
+        <item>Starred Events</item>
+        <item>My Schedule</item>
+        <item>Requests</item>
+        <item>Navigate Me</item>
+        <item>Profile</item>
+
+
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/events</item>
+        <item>@drawable/star</item>
+        <item>@drawable/schedule</item>
+        <item>@drawable/requests</item>
+        <item>@drawable/navigate</item>
+        <item>@drawable/profile</item>
+    </array>
+
+    <string name="Events">Events</string>
+    <string name="starred">Starred Events</string>
+    <string name="schedule">My Schedule</string>
+    <string name="requests">Requests</string>
+    <string name="navigate">Navigate Me</string>
+    <string name="profile">Profile</string>
+
+
 </resources>

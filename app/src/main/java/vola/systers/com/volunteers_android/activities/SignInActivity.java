@@ -1,4 +1,4 @@
-package vola.systers.com.volunteers_android;
+package vola.systers.com.volunteers_android.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import org.json.JSONObject;
 import java.util.Arrays;
+
+import vola.systers.com.volunteers_android.R;
 
  /*
   * User can SignIn manually or through social in this activity.

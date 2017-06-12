@@ -14,34 +14,31 @@
 
     <string name="desc_list_item_icon">Item Icon</string>
 
-    <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
+    <string name="google_maps_key">AIzaSyCB3hnpTnqYMdKSGfHJfU2ZYXWSGXOaYD8</string>
+
+    <string name="nav_events">Events</string>
+    <string name="nav_starred_events">Starred Events</string>
+    <string name="nav_schedule">Schedule</string>
+    <string name="nav_requests">Requests</string>
+    <string name="nav_navigate">Navigate</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_share">Share App</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
         <item>Events</item>
         <item>Starred Events</item>
-        <item>My Schedule</item>
+        <item>Schedule</item>
         <item>Requests</item>
-        <item>Navigate Me</item>
-        <item>Profile</item>
-
-
+        <item>Navigate</item>
     </string-array>
 
-    <!-- Nav Drawer List Item Icons -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/events</item>
-        <item>@drawable/star</item>
-        <item>@drawable/schedule</item>
-        <item>@drawable/requests</item>
-        <item>@drawable/navigate</item>
-        <item>@drawable/profile</item>
-    </array>
 
-    <string name="Events">Events</string>
-    <string name="starred">Starred Events</string>
-    <string name="schedule">My Schedule</string>
-    <string name="requests">Requests</string>
-    <string name="navigate">Navigate Me</string>
-    <string name="profile">Profile</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
 
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
 
 </resources>

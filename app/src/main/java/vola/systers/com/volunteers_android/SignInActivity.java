@@ -41,7 +41,6 @@ public class SignInActivity extends AppCompatActivity implements
     private static final int RC_FACEBOOK_SIGN_IN=64206;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
-    LoginButton btnLogin;
     CallbackManager callbackManager;
 
 
@@ -50,7 +49,7 @@ public class SignInActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        btnLogin=(LoginButton) findViewById(R.id.usersettings_fragment_login_button) ;
+        LoginButton btnLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
         Button btnSignIn = (Button) findViewById(R.id.btn_sign_in_google);
         btnSignIn.setOnClickListener(this);
 
@@ -82,14 +81,15 @@ public class SignInActivity extends AppCompatActivity implements
                 request.executeAsync();
             }
 
+
             @Override
             public void onCancel() {
-
+                Toast.makeText(SignInActivity.this,R.string.cancelled_request,Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Toast.makeText(SignInActivity.this,R.string.error,Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -35,14 +35,14 @@
 
     <com.facebook.login.widget.LoginButton
         xmlns:fb="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/usersettings_fragment_login_button"
+        android:id="@+id/btn_fb_sign_in"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/dimenMarginLeft"
+        android:layout_marginBottom="@dimen/dimenMarginBottom"
+        android:layout_marginRight="@dimen/dimenMarginRight"
         fb:com_facebook_login_text="@string/btn_signin_with_facebook"
-        fb:com_facebook_logout_text="Logout"
+        fb:com_facebook_logout_text="@string/logout"
         style="@style/FacebookLoginButton" />
 
         <View

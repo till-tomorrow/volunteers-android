@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "18689589026",
+    "project_id": "volunteers-android-170220"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18689589026:android:c3ed4e73071e770f",
+        "android_client_info": {
+          "package_name": "vola.systers.com.volunteers_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18689589026-14ek5lvigmtdf5ippi1cbmvnv7tdg7eu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vola.systers.com.volunteers_android",
+            "certificate_hash": "07a0c02753a7bbe129e3b047bd420b981b1b5029"
+          }
+        },
+        {
+          "client_id": "18689589026-angj6sbik95utt3mviidil99medum0l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_T14rmUSnQkbxo11PWa0NPe4BoQTNYmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

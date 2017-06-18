@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="heightImageLogo">150dp</dimen>
+    <dimen name="dimenMarginBottom">20dp</dimen>
+    <dimen name="dimenMarginTop">20dp</dimen>
+    <dimen name="dimenMarginLeft">30dp</dimen>
+    <dimen name="dimenMarginRight">30dp</dimen>
+    <dimen name="dimenLayoutMargin">16dp</dimen>
+    <dimen name="textSize">16dp</dimen>
+    <dimen name="padding">8dp</dimen>
+</resources>

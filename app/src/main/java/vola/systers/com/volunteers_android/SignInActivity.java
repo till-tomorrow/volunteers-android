@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import android.widget.Toast;
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,9 +30,6 @@ import java.util.Arrays;
 
  /*
   * User can SignIn manually or through social in this activity.
-  *
-  * @author divyapandilla
-  * @since 2017-06-02
   */
 
 public class SignInActivity extends AppCompatActivity implements
@@ -42,7 +41,6 @@ public class SignInActivity extends AppCompatActivity implements
     private static final int RC_FACEBOOK_SIGN_IN=64206;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
-    private Button btnSignIn;
     LoginButton btnLogin;
     CallbackManager callbackManager;
 
@@ -52,8 +50,8 @@ public class SignInActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        btnSignIn = (Button) findViewById(R.id.btn_sign_in_google);
         btnLogin=(LoginButton) findViewById(R.id.usersettings_fragment_login_button) ;
+        Button btnSignIn = (Button) findViewById(R.id.btn_sign_in_google);
         btnSignIn.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -106,24 +104,14 @@ public class SignInActivity extends AppCompatActivity implements
 
     }
 
-        //      code to SignOut from the google Account.
-        //    private void signOut() {
-        //        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-        //                new ResultCallback<Status>() {
-        //                    @Override
-        //                    public void onResult(Status status) {
-        //
-        //                    }
-        //                });
-        //    }
-
     private void handlegoogleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully.
+            Toast.makeText(this,R.string.sign_in_success,Toast.LENGTH_LONG).show();
             GoogleSignInAccount acct = result.getSignInAccount();
 
-            Log.e(TAG, "display name: " + acct.getDisplayName());
+            Log.i(TAG, "display name: " + acct.getDisplayName());
 
             String personName = acct.getDisplayName();
             String personPhotoUrl;
@@ -138,11 +126,12 @@ public class SignInActivity extends AppCompatActivity implements
 
             String email = acct.getEmail();
 
-            Log.e(TAG, "Name: " + personName + ", email: " + email
+            Log.i(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " +personPhotoUrl);
 
         } else {
             // UnAuthenticated.
+            Toast.makeText(this,R.string.sign_in_failure,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -156,7 +145,7 @@ public class SignInActivity extends AppCompatActivity implements
                 googleSignIn();
                 break;
 
-                   }
+        }
     }
 
     @Override
@@ -203,7 +192,6 @@ public class SignInActivity extends AppCompatActivity implements
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
@@ -222,6 +210,4 @@ public class SignInActivity extends AppCompatActivity implements
             mProgressDialog.hide();
         }
     }
-
-
 }

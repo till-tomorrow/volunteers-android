@@ -7,4 +7,5 @@
     <dimen name="dimenLayoutMargin">16dp</dimen>
     <dimen name="textSize">16dp</dimen>
     <dimen name="padding">8dp</dimen>
+    <dimen name="padding_fb_button">15dp</dimen>
 </resources>

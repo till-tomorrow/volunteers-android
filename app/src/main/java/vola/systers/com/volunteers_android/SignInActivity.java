@@ -49,9 +49,9 @@ public class SignInActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        LoginButton btnLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
-        Button btnSignIn = (Button) findViewById(R.id.btn_sign_in_google);
-        btnSignIn.setOnClickListener(this);
+        LoginButton btnFacebookLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
+        Button btnGoogleLogin = (Button) findViewById(R.id.btn_sign_in_google);
+        btnGoogleLogin.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -63,8 +63,8 @@ public class SignInActivity extends AppCompatActivity implements
                 .build();
 
         callbackManager = CallbackManager.Factory.create();
-        btnLogin.setReadPermissions(Arrays.asList("public_profile", "email"));
-        btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        btnFacebookLogin.setReadPermissions(Arrays.asList("public_profile", "email"));
+        btnFacebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 GraphRequest request = GraphRequest.newMeRequest(
@@ -104,7 +104,7 @@ public class SignInActivity extends AppCompatActivity implements
 
     }
 
-    private void handlegoogleSignInResult(GoogleSignInResult result) {
+    private void handleGoogleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully.
@@ -156,7 +156,7 @@ public class SignInActivity extends AppCompatActivity implements
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             Log.d(TAG, "signin");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handlegoogleSignInResult(result);
+            handleGoogleSignInResult(result);
         }
         else if( requestCode == RC_FACEBOOK_SIGN_IN){
             super.onActivityResult(requestCode, resultCode, data);
@@ -174,7 +174,7 @@ public class SignInActivity extends AppCompatActivity implements
             // and the GoogleSignInResult will be available instantly.
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
-            handlegoogleSignInResult(result);
+            handleGoogleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.
@@ -184,7 +184,7 @@ public class SignInActivity extends AppCompatActivity implements
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
                     hideProgressDialog();
-                    handlegoogleSignInResult(googleSignInResult);
+                    handleGoogleSignInResult(googleSignInResult);
                 }
             });
         }

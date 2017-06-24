@@ -97,6 +97,8 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
+            android:onClick="onSkipClicked"
+            android:clickable="true"
             android:textSize="@dimen/textSize"/>
 
     </LinearLayout>

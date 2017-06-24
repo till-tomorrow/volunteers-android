@@ -94,8 +94,6 @@ public class SignInActivity extends AppCompatActivity implements
         });
     }
 
-
-
     private void googleSignIn() {
 
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -212,5 +210,10 @@ public class SignInActivity extends AppCompatActivity implements
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.hide();
         }
+    }
+
+    public void onSkipClicked(View view) {
+        Intent intent = new Intent(SignInActivity.this,Menu.class);
+        startActivity(intent);
     }
 }

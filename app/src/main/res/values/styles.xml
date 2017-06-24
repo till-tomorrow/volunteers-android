@@ -23,8 +23,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:drawableLeft">@drawable/facebook</item>
         <item name="android:layout_height">200dp</item>
-
     </style>
+
+
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorHeight">0dp</item>

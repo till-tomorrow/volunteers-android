@@ -12,23 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
-
 /*
  * User can see all events either in list view or maps view in this fragment.
- *
- * @author divyapandilla
- * @since 2017-06-09
  */
-
 
 public class EventsFragment extends Fragment {
 
-    private TabLayout mTabLayout;
+    private TabLayout tabLayout;
 
     private int[] mTabsIcons = {
             R.drawable.listicon,
-            R.drawable.mapicon};
-
+            R.drawable.mapicon
+    };
 
     public EventsFragment() {
     }
@@ -43,34 +38,29 @@ public class EventsFragment extends Fragment {
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(getFragmentManager());
         if (viewPager != null)
             viewPager.setAdapter(pagerAdapter);
-        mTabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
-        if (mTabLayout != null) {
-            mTabLayout.setupWithViewPager(viewPager);
-
-            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-                TabLayout.Tab tab = mTabLayout.getTabAt(i);
+        tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
+            for (int i = 0; i < tabLayout.getTabCount(); i++) {
+                TabLayout.Tab tab = tabLayout.getTabAt(i);
                 if (tab != null)
                     tab.setCustomView(pagerAdapter.getTabView(i));
             }
-
-            mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+            tabLayout.getTabAt(0).getCustomView().setSelected(true);
         }
         return rootView;
     }
 
-
-
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
         public final int PAGE_COUNT = 2;
-
         private final String[] mTabsTitle = {"ListView", "MapView"};
-
-        public MyPagerAdapter(FragmentManager fm) {
+        public MyPagerAdapter(FragmentManager fm)
+        {
             super(fm);
         }
-
-        public View getTabView(int position) {
+        public View getTabView(int position)
+        {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);
             TextView title = (TextView) view.findViewById(R.id.title);
             title.setText(mTabsTitle[position]);

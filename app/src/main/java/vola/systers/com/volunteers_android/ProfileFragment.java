@@ -6,14 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/*
- * @author divyapandilla
- * @since 2017-06-09
- */
-
-
 public class ProfileFragment extends Fragment {
-
 
     public ProfileFragment(){}
 	
@@ -22,9 +15,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
-
         return rootView;
+
     }
-
-
 }

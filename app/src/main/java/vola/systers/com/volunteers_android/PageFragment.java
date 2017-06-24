@@ -8,14 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/*
- * @author divyapandilla
- * @since 2017-06-09
- */
-
 public class PageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-    private int mPageNo;
+    private int pageNumber;
 
     public static PageFragment newInstance(int pageNo) {
 
@@ -28,23 +23,22 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPageNo = getArguments().getInt(ARG_PAGE);
+        pageNumber = getArguments().getInt(ARG_PAGE);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page, container, false);
-        if(mPageNo == 1)
+        if(pageNumber == 1)
         {
             TextView textView = (TextView) view;
-            textView.setText("LIST VIEW");
+            textView.setText(R.string.list_view);
         }
-        else if(mPageNo == 2)
+        else if(pageNumber == 2)
         {
             TextView textView = (TextView) view;
-            textView.setText("MAP VIEW" );
+            textView.setText(R.string.map_view);
         }
-
         return view;
     }
 }

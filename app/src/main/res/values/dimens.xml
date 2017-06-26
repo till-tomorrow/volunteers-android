@@ -1,6 +1,6 @@
 <resources>
     <dimen name="heightImageLogo">150dp</dimen>
-    <dimen name="drawer_layout_height">100dp</dimen>
+    <dimen name="drawerLayoutHeight">100dp</dimen>
     <dimen name="dimenMarginBottom">20dp</dimen>
     <dimen name="dimenMarginTop">20dp</dimen>
     <dimen name="dimenMarginLeft">30dp</dimen>
@@ -11,7 +11,9 @@
     <dimen name="textNavItem">12dp</dimen>
     <dimen name="dividerHeight">1dp</dimen>
     <dimen name="padding">8dp</dimen>
-    <dimen name="nav_image_margin">12dp</dimen>
-    <dimen name="padding_fb_button">15dp</dimen>
-    <dimen name="nav_image_dimens">24dp</dimen>
+    <dimen name="navImageMargin">12dp</dimen>
+    <dimen name="paddingFbButton">15dp</dimen>
+    <dimen name="navImageDimens">24dp</dimen>
+    <dimen name="viewpagerLayoutHeight">0dp</dimen>
+    <dimen name="navLayoutWidth">240dp</dimen>
 </resources>

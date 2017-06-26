@@ -25,7 +25,6 @@
         <item>Events</item>
         <item>Starred Events</item>
         <item>My Schedule</item>
-        <item>Requests</item>
         <item>Navigate Me</item>
         <item>Profile</item>
     </string-array>
@@ -35,7 +34,6 @@
         <item>@drawable/events</item>
         <item>@drawable/star</item>
         <item>@drawable/schedule</item>
-        <item>@drawable/requests</item>
         <item>@drawable/navigate</item>
         <item>@drawable/profile</item>
     </array>
@@ -43,7 +41,6 @@
     <string name="Events">Events</string>
     <string name="starred">Starred Events</string>
     <string name="schedule">My Schedule</string>
-    <string name="requests">Requests</string>
     <string name="navigate">Navigate Me</string>
     <string name="profile">Profile</string>
 

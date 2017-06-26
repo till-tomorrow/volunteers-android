@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/drawer_layout_height"
+    android:layout_height="@dimen/drawerLayoutHeight"
     android:background="@drawable/list_selector">
 
     <ImageView
         android:id="@+id/nav_list_icon"
-        android:layout_width="@dimen/nav_image_dimens"
+        android:layout_width="@dimen/navImageDimens"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/nav_image_margin"
-        android:layout_marginRight="@dimen/nav_image_margin"
+        android:layout_marginLeft="@dimen/navImageMargin"
+        android:layout_marginRight="@dimen/navImageMargin"
         android:contentDescription="@string/desc_list_item_icon"
         android:layout_centerVertical="true" />
 

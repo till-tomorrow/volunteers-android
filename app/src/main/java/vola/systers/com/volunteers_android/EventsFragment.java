@@ -55,10 +55,10 @@ public class EventsFragment extends Fragment {
 
         public final int PAGE_COUNT = 2;
         private final String[] mTabsTitle = {"ListView", "MapView"};
-        public MyPagerAdapter(FragmentManager fm)
-        {
+        public MyPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
         public View getTabView(int position)
         {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_tab, null);

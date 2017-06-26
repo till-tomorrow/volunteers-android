@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="@dimen/nav_image_dimens"
-        android:layout_height="@dimen/nav_image_dimens"
+        android:layout_width="@dimen/navImageDimens"
+        android:layout_height="@dimen/navImageDimens"
         android:scaleType="centerInside" />
 
     <TextView

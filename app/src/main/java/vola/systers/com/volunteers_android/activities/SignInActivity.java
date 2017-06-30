@@ -47,7 +47,6 @@ public class SignInActivity extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;
     CallbackManager callbackManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +88,6 @@ public class SignInActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
 
-
             @Override
             public void onCancel() {
                 Toast.makeText(SignInActivity.this,R.string.cancelled_request,Toast.LENGTH_LONG).show();
@@ -103,10 +101,8 @@ public class SignInActivity extends AppCompatActivity implements
     }
 
     private void googleSignIn() {
-
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
-
     }
 
     public void onSkipClicked() {

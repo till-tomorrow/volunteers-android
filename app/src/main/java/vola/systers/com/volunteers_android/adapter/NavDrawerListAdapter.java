@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import vola.systers.com.volunteers_android.R;
 import vola.systers.com.volunteers_android.model.NavDrawerItem;
 
-/*
- * @author divyapandilla
- * @since 2017-06-06
- */
-
 public class NavDrawerListAdapter extends BaseAdapter {
 	
 	private Context context;

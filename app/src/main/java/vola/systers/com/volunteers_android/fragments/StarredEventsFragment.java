@@ -8,13 +8,7 @@ import android.view.ViewGroup;
 
 import vola.systers.com.volunteers_android.R;
 
-/*
- * @author divyapandilla
- * @since 2017-06-11
- */
-
 public class StarredEventsFragment extends Fragment {
-
 
     public StarredEventsFragment(){}
 
@@ -26,6 +20,5 @@ public class StarredEventsFragment extends Fragment {
 
         return rootView;
     }
-
 
 }

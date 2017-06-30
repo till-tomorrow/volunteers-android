@@ -20,14 +20,8 @@ import vola.systers.com.volunteers_android.R;
 import vola.systers.com.volunteers_android.fragments.EventsListFragment;
 import vola.systers.com.volunteers_android.fragments.EventsMapFragment;
 import vola.systers.com.volunteers_android.fragments.StarredEventsFragment;
-import vola.systers.com.volunteers_android.fragments.RequestsFragment;
 import vola.systers.com.volunteers_android.fragments.ScheduleFragment;
 import vola.systers.com.volunteers_android.fragments.NavigateFragment;
-
-/*
- * @author divyapandilla
- * @since 2017-06-06
- */
 
 
 public class Menu extends AppCompatActivity {
@@ -46,7 +40,6 @@ public class Menu extends AppCompatActivity {
     private static final String TAG_EVENTS = "events";
     private static final String TAG_STARRED = "starred";
     private static final String TAG_SCHEDULE = "schedule";
-    private static final String TAG_REQUESTS = "requests";
     private static final String TAG_NAVIGATE = "navigate";
     public static String CURRENT_TAG = TAG_EVENTS;
 
@@ -55,7 +48,7 @@ public class Menu extends AppCompatActivity {
 
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
-    private Handler mHandler;
+    private Handler handler;
 
 
     @Override
@@ -64,18 +57,13 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.menu);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        mHandler = new Handler();
-
+        handler = new Handler();
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-
-
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +80,6 @@ public class Menu extends AppCompatActivity {
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.frame, fragment);
                     ft.commit();
-
                 }
                 else if(TAG_FAB=="map")
                 {
@@ -106,12 +93,10 @@ public class Menu extends AppCompatActivity {
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.frame, fragment);
                     ft.commit();
-
                 }
             }
 
         });
-
 
         // initializing navigation menu
         setUpNavigationView();
@@ -119,7 +104,6 @@ public class Menu extends AppCompatActivity {
         if (savedInstanceState == null) {
             navItemIndex = 0;
             CURRENT_TAG = TAG_EVENTS;
-
             loadHomeFragment();
         }
     }
@@ -165,7 +149,7 @@ public class Menu extends AppCompatActivity {
 
         // If mPendingRunnable is not null, then add to the message queue
         if (mPendingRunnable != null) {
-            mHandler.post(mPendingRunnable);
+            handler.post(mPendingRunnable);
         }
 
         // show or hide the fab button
@@ -202,12 +186,8 @@ public class Menu extends AppCompatActivity {
                 // schedule fragment
                 ScheduleFragment scheduleFragment = new ScheduleFragment();
                 return scheduleFragment;
-            case 3:
-                // requests fragment
-                RequestsFragment requestsFragment = new RequestsFragment();
-                return requestsFragment;
 
-            case 4:
+            case 3:
                 // navigate fragment
                 NavigateFragment navigateFragment = new NavigateFragment();
                 return navigateFragment;
@@ -317,7 +297,6 @@ public class Menu extends AppCompatActivity {
                 return;
             }
         }
-
         super.onBackPressed();
     }
 

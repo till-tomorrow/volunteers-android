@@ -8,14 +8,7 @@ import android.view.ViewGroup;
 
 import vola.systers.com.volunteers_android.R;
 
-/*
- * @author divyapandilla
- * @since 2017-06-11
- */
-
-
 public class NavigateFragment extends Fragment {
-
 
     public NavigateFragment(){}
 

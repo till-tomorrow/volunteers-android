@@ -62,8 +62,6 @@
             </intent-filter>
         </activity>
 
-
-
         <activity android:name=".activities.SignInActivity">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />

@@ -1,10 +1,5 @@
 package vola.systers.com.volunteers_android.model;
 
-/*
- * @author divyapandilla
- * @since 2017-06-06
- */
-
 public class NavDrawerItem {
 	
 	private String title;

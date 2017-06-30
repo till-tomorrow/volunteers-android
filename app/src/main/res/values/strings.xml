@@ -31,11 +31,11 @@
 
     <!-- Nav Drawer List Item Icons -->
     <array name="nav_drawer_icons">
-        <item>@drawable/events</item>
-        <item>@drawable/star</item>
-        <item>@drawable/schedule</item>
-        <item>@drawable/navigate</item>
-        <item>@drawable/profile</item>
+        <item>@mipmap/event</item>
+        <item>@mipmap/star</item>
+        <item>@mipmap/schedule</item>
+        <item>@mipmap/navigate</item>
+        <item>@mipmap/profile</item>
     </array>
 
     <string name="Events">Events</string>

@@ -137,22 +137,22 @@ public class Menu extends ActionBarActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                getSupportActionBar().setIcon(R.drawable.events);
+                getSupportActionBar().setIcon(R.mipmap.event);
                 fragment = new EventsFragment();
                 break;
-            case 1:getSupportActionBar().setIcon(R.drawable.star);
+            case 1:getSupportActionBar().setIcon(R.mipmap.star);
                 fragment = new ProfileFragment();
                 break;
             case 2:
-                getSupportActionBar().setIcon(R.drawable.schedule);
+                getSupportActionBar().setIcon(R.mipmap.schedule);
                 fragment = new ProfileFragment();
                 break;
             case 3:
-                getSupportActionBar().setIcon(R.drawable.navigate);
+                getSupportActionBar().setIcon(R.mipmap.navigate);
                 fragment = new ProfileFragment();
                 break;
             case 4:
-                getSupportActionBar().setIcon(R.drawable.profile);
+                getSupportActionBar().setIcon(R.mipmap.profile);
                 fragment = new ProfileFragment();
                 break;
             default:

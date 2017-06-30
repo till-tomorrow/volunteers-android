@@ -247,12 +247,8 @@ public class Menu extends AppCompatActivity {
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SCHEDULE;
                         break;
-                    case R.id.nav_requests:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_REQUESTS;
-                        break;
                     case R.id.nav_navigate:
-                        navItemIndex = 4;
+                        navItemIndex = 3;
                         CURRENT_TAG = TAG_NAVIGATE;
                         break;
                     case R.id.nav_profile:

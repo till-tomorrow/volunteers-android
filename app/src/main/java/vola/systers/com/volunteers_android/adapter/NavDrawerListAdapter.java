@@ -52,7 +52,7 @@ public class NavDrawerListAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.drawer_list_item, null);
         }
          
-        ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
+        ImageView imgIcon = (ImageView) convertView.findViewById(R.id.nav_list_icon);
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
         TextView txtCount = (TextView) convertView.findViewById(R.id.counter);
          

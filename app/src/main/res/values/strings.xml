@@ -21,6 +21,11 @@
     <string name="map_view">MAP VIEW</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="recents">Recents</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in_button_text">SIGN IN</string>
+    <string name="about_vola">About VOLA!</string>
+    <string name="view">View</string>
     <string name="other">Other</string>
 
     <string name="google_maps_key">AIzaSyCB3hnpTnqYMdKSGfHJfU2ZYXWSGXOaYD8</string>

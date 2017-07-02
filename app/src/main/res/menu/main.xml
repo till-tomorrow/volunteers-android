@@ -4,6 +4,6 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="collapseActionView"
-        android:title="About VOLA!"/>
+        android:title="@string/about_vola"/>
 
 </menu>

@@ -19,6 +19,11 @@
     <string name="map_view">MAP VIEW</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="recents">Recents</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in_button_text">SIGN IN</string>
+    <string name="about_vola">About VOLA!</string>
+    <string name="view">View</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">

@@ -41,15 +41,15 @@
         android:layout_marginLeft="@dimen/dimenMarginLeft"
         android:layout_marginBottom="@dimen/dimenMarginBottom"
         android:layout_marginRight="@dimen/dimenMarginRight"
-        android:paddingTop="@dimen/padding_fb_button"
-        android:paddingBottom="@dimen/padding_fb_button"
+        android:paddingTop="@dimen/paddingFbButton"
+        android:paddingBottom="@dimen/paddingFbButton"
         fb:com_facebook_login_text="@string/btn_signin_with_facebook"
         fb:com_facebook_logout_text="@string/logout"
         style="@style/FacebookLoginButton" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dividerHeight"
             android:background="@color/light_grey"
             android:layout_marginBottom="@dimen/dimenMarginBottom"
             />
@@ -58,14 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email" />
+            android:hint="@string/hint_email" />
 
 
         <EditText android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password"/>
+            android:hint="@string/hint_password"/>
 
 
         <Button
@@ -78,7 +78,7 @@
             android:textSize="@dimen/textSize"
             android:textColor="@color/text_white"
             android:background="@color/colorPrimary"
-            android:text="SIGN IN"/>
+            android:text="@string/sign_in_button_text"/>
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
@@ -97,6 +97,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
+            android:clickable="true"
             android:textSize="@dimen/textSize"/>
 
     </LinearLayout>

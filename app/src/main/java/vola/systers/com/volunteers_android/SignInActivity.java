@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -51,7 +53,9 @@ public class SignInActivity extends AppCompatActivity implements
 
         LoginButton btnFacebookLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
         Button btnGoogleLogin = (Button) findViewById(R.id.btn_sign_in_google);
+        TextView skipLink = (TextView)findViewById(R.id.link_skip);
         btnGoogleLogin.setOnClickListener(this);
+        skipLink.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -79,6 +83,8 @@ public class SignInActivity extends AppCompatActivity implements
                 parameters.putString("fields","id,name,email,gender,birthday");
                 request.setParameters(parameters);
                 request.executeAsync();
+                Intent intent = new Intent(SignInActivity.this,Menu.class);
+                startActivity(intent);
             }
 
 
@@ -94,14 +100,16 @@ public class SignInActivity extends AppCompatActivity implements
         });
     }
 
-
-
     private void googleSignIn() {
 
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
 
+    }
 
+    public void onSkipClicked() {
+        Intent intent = new Intent(SignInActivity.this,Menu.class);
+        startActivity(intent);
     }
 
     private void handleGoogleSignInResult(GoogleSignInResult result) {
@@ -129,10 +137,14 @@ public class SignInActivity extends AppCompatActivity implements
             Log.i(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " +personPhotoUrl);
 
+            Intent intent = new Intent(SignInActivity.this,Menu.class);
+            startActivity(intent);
+
         } else {
             // UnAuthenticated.
             Toast.makeText(this,R.string.sign_in_failure,Toast.LENGTH_LONG).show();
         }
+
     }
 
 
@@ -141,9 +153,12 @@ public class SignInActivity extends AppCompatActivity implements
         int id = v.getId();
 
         switch (id) {
+
             case R.id.btn_sign_in_google:
                 googleSignIn();
                 break;
+            case R.id.link_skip:
+                onSkipClicked();
 
         }
     }

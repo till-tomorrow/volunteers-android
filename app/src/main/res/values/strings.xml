@@ -15,4 +15,38 @@
     <string name="sign_in_success">Signed In Successfully</string>
     <string name="sign_in_failure">Sign In Failure</string>
     <string name="logout">Logout</string>
+    <string name="list_view">LIST VIEW</string>
+    <string name="map_view">MAP VIEW</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="recents">Recents</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in_button_text">SIGN IN</string>
+    <string name="about_vola">About VOLA!</string>
+    <string name="view">View</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Events</item>
+        <item>Starred Events</item>
+        <item>My Schedule</item>
+        <item>Navigate Me</item>
+        <item>Profile</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <array name="nav_drawer_icons">
+        <item>@mipmap/event</item>
+        <item>@mipmap/star</item>
+        <item>@mipmap/schedule</item>
+        <item>@mipmap/navigate</item>
+        <item>@mipmap/profile</item>
+    </array>
+
+    <string name="Events">Events</string>
+    <string name="starred">Starred Events</string>
+    <string name="schedule">My Schedule</string>
+    <string name="navigate">Navigate Me</string>
+    <string name="profile">Profile</string>
+
 </resources>

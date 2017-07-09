@@ -35,7 +35,6 @@ public class Menu extends AppCompatActivity {
     // index to identify current nav menu item
     public static int navItemIndex = 0;
 
-    // tags used to attach the fragments
     private static  String TAG_FAB ="list";
     private static final String TAG_EVENTS = "events";
     private static final String TAG_STARRED = "starred";
@@ -108,16 +107,15 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-    /***
+    /*
      * Returns respected fragment that user
      * selected from navigation menu
      */
 
     private void loadHomeFragment() {
-        // selecting appropriate nav menu item
+
         selectNavMenu();
 
-        // set toolbar title
         setToolbarTitle();
 
         // if user select the current navigation menu again, don't do anything
@@ -152,10 +150,8 @@ public class Menu extends AppCompatActivity {
             handler.post(mPendingRunnable);
         }
 
-        // show or hide the fab button
         toggleFab();
 
-        //Closing drawer on item click
         drawer.closeDrawers();
 
         // refresh toolbar menu
@@ -165,7 +161,6 @@ public class Menu extends AppCompatActivity {
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
-                // events
                 if(TAG_FAB == "list")
                 {
                     EventsListFragment listFragment = new EventsListFragment();
@@ -178,17 +173,14 @@ public class Menu extends AppCompatActivity {
                 }
 
             case 1:
-                // starred fragment
                 StarredEventsFragment starredEventsFragment = new StarredEventsFragment();
                 return starredEventsFragment;
 
             case 2:
-                // schedule fragment
                 ScheduleFragment scheduleFragment = new ScheduleFragment();
                 return scheduleFragment;
 
             case 3:
-                // navigate fragment
                 NavigateFragment navigateFragment = new NavigateFragment();
                 return navigateFragment;
             default:
@@ -214,7 +206,6 @@ public class Menu extends AppCompatActivity {
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
-                    //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_events:
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_EVENTS;
@@ -233,9 +224,11 @@ public class Menu extends AppCompatActivity {
                         break;
                     case R.id.nav_profile:
                         // launch new intent instead of loading fragment
+                        // TODO : Profile Page
 
                     case R.id.nav_share:
                         // launch new intent instead of loading fragment
+                        // TODO : Share APP
 
                     default:
                         navItemIndex = 0;
@@ -285,11 +278,7 @@ public class Menu extends AppCompatActivity {
             return;
         }
 
-        // This code loads home fragment when back key is pressed
-        // when user is in other fragment than home
         if (shouldLoadHomeFragOnBackPress) {
-            // checking if user is on other navigation menu
-            // rather than home
             if (navItemIndex != 0) {
                 navItemIndex = 0;
                 CURRENT_TAG = TAG_EVENTS;
@@ -309,10 +298,6 @@ public class Menu extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.main, menu);
         }
 
-        // when fragment is notifications, load the menu created for notifications
-        if (navItemIndex == 3) {
-            getMenuInflater().inflate(R.menu.notifications, menu);
-        }
         return true;
     }
 
@@ -325,20 +310,8 @@ public class Menu extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.logout, Toast.LENGTH_LONG).show();
             return true;
-        }
-
-        // user is in notifications fragment
-        // and selected 'Mark all as Read'
-        if (id == R.id.action_mark_all_read) {
-            Toast.makeText(getApplicationContext(), "All notifications marked as read!", Toast.LENGTH_LONG).show();
-        }
-
-        // user is in notifications fragment
-        // and selected 'Clear All'
-        if (id == R.id.action_clear_notifications) {
-            Toast.makeText(getApplicationContext(), "Clear all notifications!", Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);

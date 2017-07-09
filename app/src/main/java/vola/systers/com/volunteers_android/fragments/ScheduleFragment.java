@@ -16,8 +16,9 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
+        // TODO : SCHEDULE FRAGMENT
 
+        View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         return rootView;
     }
 

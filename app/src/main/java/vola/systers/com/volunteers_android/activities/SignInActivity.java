@@ -1,4 +1,4 @@
-package vola.systers.com.volunteers_android;
+package vola.systers.com.volunteers_android.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +30,8 @@ import com.facebook.login.widget.LoginButton;
 import org.json.JSONObject;
 import java.util.Arrays;
 
+import vola.systers.com.volunteers_android.R;
+
  /*
   * User can SignIn manually or through social in this activity.
   */
@@ -44,7 +46,6 @@ public class SignInActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
     CallbackManager callbackManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,6 @@ public class SignInActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
 
-
             @Override
             public void onCancel() {
                 Toast.makeText(SignInActivity.this,R.string.cancelled_request,Toast.LENGTH_LONG).show();
@@ -101,10 +101,8 @@ public class SignInActivity extends AppCompatActivity implements
     }
 
     private void googleSignIn() {
-
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
-
     }
 
     public void onSkipClicked() {

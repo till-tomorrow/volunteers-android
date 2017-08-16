@@ -1,15 +1,13 @@
-package vola.systers.com.volunteers_android.activities;
+package vola.systers.com.android.activities;
 
 import android.os.SystemClock;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import vola.systers.com.volunteers_android.R;
+import vola.systers.com.android.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;

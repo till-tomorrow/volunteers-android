@@ -72,13 +72,16 @@ public class SignInActivity extends AppCompatActivity implements
         LoginButton btnFacebookLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
         Button btnGoogleLogin = (Button) findViewById(R.id.btn_sign_in_google);
         TextView skipLink = (TextView)findViewById(R.id.link_skip);
+        TextView signUpLink = (TextView)findViewById(R.id.link_signup);
         btnGoogleLogin.setOnClickListener(this);
         skipLink.setOnClickListener(this);
+        signUpLink.setOnClickListener(this);
 
         emailText= (EditText)findViewById(R.id.input_email) ;
         passwordText= (EditText)findViewById(R.id.input_password);
 
         login =(Button)findViewById(R.id.btn_login) ;
+        login.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -95,25 +98,6 @@ public class SignInActivity extends AppCompatActivity implements
             }
         };
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final String email = emailText.getText().toString();
-                final String pass = passwordText.getText().toString();
-
-                if (!isValidEmail(email)) {
-                    emailText.setError(getText(R.string.invalid_username));
-                }
-
-                if (!isValidPassword(pass)) {
-                    passwordText.setError(getText(R.string.empty_password));
-                }
-
-                if(isValidEmail(email) && isValidPassword(pass))
-                    signin(emailText,passwordText);
-            }
-        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -156,6 +140,22 @@ public class SignInActivity extends AppCompatActivity implements
                 Toast.makeText(SignInActivity.this,R.string.error,Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void SignIn() {
+        final String email = emailText.getText().toString();
+        final String pass = passwordText.getText().toString();
+
+        if (!isValidEmail(email)) {
+            emailText.setError(getText(R.string.invalid_username));
+        }
+
+        if (!isValidPassword(pass)) {
+            passwordText.setError(getText(R.string.empty_password));
+        }
+
+        if(isValidEmail(email) && isValidPassword(pass))
+            signin(emailText,passwordText);
     }
 
     public void signin(EditText email,EditText password) {
@@ -208,6 +208,11 @@ public class SignInActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void signUp() {
+        Intent intent = new Intent(SignInActivity.this,SignUpActivity.class);
+        startActivity(intent);
+    }
+
     private void handleGoogleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -247,15 +252,19 @@ public class SignInActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
         switch (id) {
-
             case R.id.btn_sign_in_google:
                 googleSignIn();
                 break;
             case R.id.link_skip:
                 onSkipClicked();
-
+               break;
+            case R.id.link_signup:
+                signUp();
+                break;
+            case R.id.btn_login:
+                SignIn();
+                break;
         }
     }
 
@@ -347,5 +356,4 @@ public class SignInActivity extends AppCompatActivity implements
         }
         return false;
     }
-
 }

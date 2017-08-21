@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,11 +21,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.activities.EventDetailViewActivity;
 import vola.systers.com.android.model.Event;
 import vola.systers.com.android.adapter.EventListAdapter;
+
+import static vola.systers.com.android.fragments.ScheduleFragment.database;
 
 public class EventsListFragment extends Fragment {
 
@@ -36,9 +42,11 @@ public class EventsListFragment extends Fragment {
     private ProgressDialog pDialog;
     private ListView eventListView;
     private static EventListAdapter eventListAdapter;
+    public static String userToken="";
     static String startDate, endDate, id,name,startTime,endTime,locationName,description,latitude,longitude,status,max_attendees,city,country;
 
     ArrayList<Event> eventList = new ArrayList<>();
+    Map<String,String> registeredEvents = new HashMap<String, String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,13 +55,29 @@ public class EventsListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.eventslist_fragment, container, false);
         eventList = new ArrayList<>();
         eventListView = (ListView) rootView.findViewById(R.id.list);
-        new GetEvents().execute();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            userToken = user.getUid();
+        }
+        DatabaseReference usersRef = database.getReference("event_registrations").child(userToken);
+        ValueEventListener vs = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Log.i("EVENT IDS", ds.getKey().toString());
+                    registeredEvents.put(ds.getKey().toString(),ds.child("attendee_type").getValue().toString());
+                }
+                new GetEvents().execute();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "Failed to read value.", databaseError.toException());
+            }
+        };
+        usersRef.addValueEventListener(vs);
         return rootView;
     }
-
-    /**
-     * Async task class to get json by making HTTP call
-     */
 
     private class GetEvents extends AsyncTask<Void, Void, Void> {
 
@@ -62,10 +86,12 @@ public class EventsListFragment extends Fragment {
             super.onPreExecute();
 
             // Showing progress dialog
-            pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
+            if(getActivity()!=null) {
+                pDialog = new ProgressDialog(getActivity());
+                pDialog.setMessage("Please wait...");
+                pDialog.setCancelable(false);
+                pDialog.show();
+            }
         }
 
         @Override
@@ -92,7 +118,19 @@ public class EventsListFragment extends Fragment {
                         latitude=data_snap.child("location").child("latitude").getValue().toString();
                         longitude=data_snap.child("location").child("longitude").getValue().toString();
 
-                        eventList.add(new Event(id, name, startDate,endDate,startTime,endTime,locationName,description,city,country,latitude,longitude,"status"));
+                        if(registeredEvents.containsKey(id))
+                        {
+                            status="Registered as "+registeredEvents.get(id);
+                            Log.d(TAG,status);
+                        }
+                        else if(data_snap.child("needs_volunteers").getValue().toString()=="true")
+                        {
+                            status="Require Volunteers";
+                        }
+                        else {
+                            status="";
+                        }
+                        eventList.add(new Event(id, name, startDate,endDate,startTime,endTime,locationName,description,city,country,latitude,longitude,status));
 
                     }
                     if(getContext()!=null) {

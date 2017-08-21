@@ -66,6 +66,11 @@ public class EventDetailViewActivity extends AppCompatActivity implements View.O
         locationCountry.setText(country);
         eventDate.setText(date);
         eventTime.setText(time);
+        if(!event.getStatus().equals("Require Volunteers") && !event.getStatus().equals(""))
+        {
+            register.setAlpha(.5f);
+            register.setClickable(false);
+        }
     }
 
     @Override
@@ -82,9 +87,9 @@ public class EventDetailViewActivity extends AppCompatActivity implements View.O
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Event event = (Event) getIntent().getSerializableExtra("selectedEvent");
-            Intent i=new Intent(EventDetailViewActivity.this,RegistrationActivity.class);
-            i.putExtra("event",event);
-            startActivity(i);
+                Intent i=new Intent(EventDetailViewActivity.this,RegistrationActivity.class);
+                i.putExtra("event",event);
+                startActivity(i);
         }
         else
         {

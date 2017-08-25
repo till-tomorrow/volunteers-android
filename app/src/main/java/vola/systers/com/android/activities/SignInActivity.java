@@ -1,6 +1,10 @@
 package vola.systers.com.android.activities;
 
-import android.preference.PreferenceManager;
+import vola.systers.com.android.utils.NetworkConnectivity;
+
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
@@ -38,6 +42,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.manager.PrefManager;
@@ -52,9 +58,10 @@ public class SignInActivity extends AppCompatActivity implements
 
     private static final int RC_GOOGLE_SIGN_IN = 007;
     private static final int RC_FACEBOOK_SIGN_IN=64206;
+    ProgressDialog verifyingAuthProgressDialog ;
     private GoogleApiClient mGoogleApiClient;
-    private ProgressDialog mProgressDialog;
     CallbackManager callbackManager;
+    private CoordinatorLayout coordinatorLayout;
     private static final String TAG = SignInActivity.class.getSimpleName();
     private PrefManager prefManager;
     private FirebaseAuth mAuth;
@@ -69,10 +76,20 @@ public class SignInActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         prefManager = new PrefManager(this);
+        verifyingAuthProgressDialog = new ProgressDialog(SignInActivity.this);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         if (!prefManager.isFirstTimeLaunch()) {
             launchHomeScreen();
             finish();
+        }
+
+         if(! new NetworkConnectivity().checkConnectivity(this)) {
+             Snackbar snackbar = Snackbar
+                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
+             View sbView = snackbar.getView();
+             sbView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+             snackbar.show();
         }
 
         LoginButton btnFacebookLogin=(LoginButton) findViewById(R.id.btn_fb_sign_in) ;
@@ -90,16 +107,27 @@ public class SignInActivity extends AppCompatActivity implements
         login.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                if(! new NetworkConnectivity().checkConnectivity(getApplicationContext())) {
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                    snackbar.show();
+                }
+                else
+                {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if (user != null) {
+                        // User is signed in
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    } else {
+                        // User is signed out
+                        Log.d(TAG, "onAuthStateChanged:signed_out");
+                    }
                 }
             }
         };
@@ -136,12 +164,21 @@ public class SignInActivity extends AppCompatActivity implements
 
             @Override
             public void onCancel() {
-                Toast.makeText(SignInActivity.this,R.string.cancelled_request,Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, R.string.cancelled_request, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                snackbar.show();
+
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(SignInActivity.this,R.string.error,Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, R.string.error, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                snackbar.show();
             }
         });
     }
@@ -158,52 +195,56 @@ public class SignInActivity extends AppCompatActivity implements
             passwordText.setError(getText(R.string.empty_password));
         }
 
-        if(isValidEmail(email) && isValidPassword(pass))
-            signin(emailText,passwordText);
+        if (isValidEmail(email) && isValidPassword(pass))
+            signin(emailText, passwordText);
     }
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
+        if (verifyingAuthProgressDialog != null && verifyingAuthProgressDialog.isShowing()) {
+            verifyingAuthProgressDialog.dismiss();
+        }
         startActivity(new Intent(SignInActivity.this, MenuActivity.class));
         finish();
     }
 
     public void signin(EditText email,EditText password) {
 
-        Log.d(TAG, "SignIn");
-        final ProgressDialog progressDialog = new ProgressDialog(SignInActivity.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Verifying User..");
-        progressDialog.show();
+            Log.d(TAG, "SignIn");
+            verifyingAuthProgressDialog.setIndeterminate(true);
+            verifyingAuthProgressDialog.setMessage("Verifying User..");
+            verifyingAuthProgressDialog.show();
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                // If sign in fails, display a message to the user. If sign in succeeds
-                // the auth state listener will be notified and logic to handle the
-                // signed in user can be handled in the listener.
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
 
-                if (!task.isSuccessful()) {
-                    Log.w(TAG, "signInWithEmail:failed", task.getException());
-                    Toast.makeText(SignInActivity.this, R.string.auth_failed,Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Toast.makeText(SignInActivity.this, R.string.auth_success,Toast.LENGTH_LONG).show();
-                    launchHomeScreen();
-                }
-                }
-            });
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Snackbar snackbar = Snackbar
+                                        .make(coordinatorLayout, R.string.auth_failed, Snackbar.LENGTH_LONG);
+                                View sbView = snackbar.getView();
+                                sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                                snackbar.show();
+                            }
+                            else
+                            {
+                                Snackbar snackbar = Snackbar
+                                        .make(coordinatorLayout, R.string.auth_success, Snackbar.LENGTH_LONG);
+                                View sbView = snackbar.getView();
+                                sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                                snackbar.show();
+                                launchHomeScreen();
+                            }
+                        }
+                    });
 
-        new android.os.Handler().postDelayed(
-            new Runnable() {
-                public void run() {
-                    progressDialog.dismiss();
-                }
-            }, 3000);
     }
 
 
@@ -234,12 +275,23 @@ public class SignInActivity extends AppCompatActivity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String userToken = user.getUid();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference usersRef = database.getReference("users");
+                            String[] name= user.getDisplayName().split(" ");
+                            usersRef.child(userToken).child("first_name").setValue(name[0]);
+                            usersRef.child(userToken).child("last_name").setValue(name[1]);
                             launchHomeScreen();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(coordinatorLayout, "Authentication failed.", Snackbar.LENGTH_LONG);
+                            View sbView = snackbar.getView();
+                            sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                            snackbar.show();
+
                         }
 
                     }
@@ -248,20 +300,29 @@ public class SignInActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.btn_sign_in_google:
-                googleSignIn();
-                break;
-            case R.id.link_skip:
-                onSkipClicked();
-               break;
-            case R.id.link_signup:
-                signUp();
-                break;
-            case R.id.btn_login:
-                SignIn();
-                break;
+        if(! new NetworkConnectivity().checkConnectivity(this)) {
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
+            View sbView = snackbar.getView();
+            sbView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+            snackbar.show();
+        }
+        else {
+            int id = v.getId();
+            switch (id) {
+                case R.id.btn_sign_in_google:
+                    googleSignIn();
+                    break;
+                case R.id.link_skip:
+                    onSkipClicked();
+                    break;
+                case R.id.link_signup:
+                    signUp();
+                    break;
+                case R.id.btn_login:
+                    SignIn();
+                    break;
+            }
         }
     }
 
@@ -278,8 +339,12 @@ public class SignInActivity extends AppCompatActivity implements
                 firebaseAuthWithGoogle(account);
             } else {
                 Log.i(TAG,"failure");
-                Toast.makeText(SignInActivity.this, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "Authentication failed.", Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                sbView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+                snackbar.show();
+
             }
         }
         else if( requestCode == RC_FACEBOOK_SIGN_IN){
@@ -308,21 +373,6 @@ public class SignInActivity extends AppCompatActivity implements
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
-    private void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    private void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.hide();
-        }
-    }
 
     // validating email id
     private boolean isValidEmail(String email) {

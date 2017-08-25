@@ -35,7 +35,6 @@
     <string name="nav_events">Events</string>
     <string name="nav_starred_events">Starred Events</string>
     <string name="nav_schedule">Schedule</string>
-    <string name="nav_navigate">Navigate</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_share">Share App</string>
     <string name="verifying">Verifying Account...</string>
@@ -50,12 +49,15 @@
     <string name="attendee_type">Attendee Type : </string>
     <string name="volunteer">Volunteer</string>
     <string name="student">Student</string>
+    <string name="profile">PROFILE</string>
     <string name="others">Others</string>
+    <string name="save">SAVE</string>
 
     <string name="email">Email : </string>
     <string name="fname">First Name : </string>
     <string name="lname">Last Name :</string>
     <string name="affiliations">Affiliations : </string>
+    <string name="roleTitle">Title : </string>
     <string name="accommodations">Accommodations :</string>
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
@@ -78,5 +80,6 @@
     <string name="date">Date :</string>
     <string name="time">Time :</string>
     <string name="location">Location :</string>
+    <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
 </resources>

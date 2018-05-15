@@ -1,6 +1,5 @@
 package vola.systers.com.android.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,20 +23,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.activities.EventDetailViewActivity;
-import vola.systers.com.android.adapter.EventListAdapter;
-import vola.systers.com.android.adapter.ScheduleEventsListAdapter;
 import vola.systers.com.android.adapter.StarredEventsListAdapter;
 import vola.systers.com.android.model.Event;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 public class StarredEventsFragment extends Fragment {
 
@@ -62,7 +55,7 @@ public class StarredEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if(! new NetworkConnectivity().checkConnectivity(getActivity())) {
+        if(! new NetworkUtil().checkConnectivity(getActivity())) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

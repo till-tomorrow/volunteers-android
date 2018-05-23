@@ -1,12 +1,7 @@
 package vola.systers.com.android.activities;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -20,7 +15,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.model.Event;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -62,7 +56,7 @@ public class RegistrationActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -121,7 +115,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void registerToEvent(View view) {
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

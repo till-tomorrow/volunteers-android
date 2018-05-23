@@ -31,7 +31,7 @@ import vola.systers.com.android.R;
 import vola.systers.com.android.activities.EventDetailViewActivity;
 import vola.systers.com.android.model.Event;
 import vola.systers.com.android.adapter.EventListAdapter;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 import static vola.systers.com.android.fragments.ScheduleFragment.database;
 
@@ -62,7 +62,7 @@ public class EventsListFragment extends Fragment {
         eventListView = (ListView) rootView.findViewById(R.id.list);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinator_layout);
 
-        if(! new NetworkConnectivity().checkConnectivity(getActivity())) {
+        if(! new NetworkUtil().checkConnectivity(getActivity())) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

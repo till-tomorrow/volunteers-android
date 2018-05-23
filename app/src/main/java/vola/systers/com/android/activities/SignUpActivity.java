@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 public class SignUpActivity extends AppCompatActivity implements
         View.OnClickListener{
@@ -47,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_sign_up);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -123,7 +123,7 @@ public class SignUpActivity extends AppCompatActivity implements
         String fname = editTextFname.getText().toString().trim();
         String lname = editTextLname.getText().toString().trim();
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

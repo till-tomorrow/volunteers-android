@@ -2,7 +2,6 @@ package vola.systers.com.android.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,7 +15,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,10 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.adapter.EventListAdapter;
 import vola.systers.com.android.manager.PrefManager;
-import vola.systers.com.android.model.Event;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -62,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -171,7 +167,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     public void logoutUser()
     {
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -189,7 +185,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     public void saveProfileButtonClick()
     {
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

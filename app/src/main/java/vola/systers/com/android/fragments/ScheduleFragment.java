@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,9 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,10 +36,9 @@ import vola.systers.com.android.R;
 import vola.systers.com.android.activities.EventDetailViewActivity;
 import vola.systers.com.android.activities.MenuActivity;
 import vola.systers.com.android.activities.SignInActivity;
-import vola.systers.com.android.adapter.EventListAdapter;
 import vola.systers.com.android.adapter.ScheduleEventsListAdapter;
 import vola.systers.com.android.model.Event;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 public class ScheduleFragment extends Fragment {
 
@@ -75,7 +70,7 @@ public class ScheduleFragment extends Fragment {
         eventsLabel=(TextView)rootView.findViewById(R.id.noEventsLabel);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(! new NetworkConnectivity().checkConnectivity(getActivity())) {
+        if(! new NetworkUtil().checkConnectivity(getActivity())) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

@@ -1,6 +1,6 @@
 package vola.systers.com.android.activities;
 
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
@@ -84,7 +83,7 @@ public class SignInActivity extends AppCompatActivity implements
             finish();
         }
 
-         if(! new NetworkConnectivity().checkConnectivity(this)) {
+         if(! new NetworkUtil().checkConnectivity(this)) {
              Snackbar snackbar = Snackbar
                      .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
              View sbView = snackbar.getView();
@@ -111,7 +110,7 @@ public class SignInActivity extends AppCompatActivity implements
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(! new NetworkConnectivity().checkConnectivity(getApplicationContext())) {
+                if(! new NetworkUtil().checkConnectivity(getApplicationContext())) {
                     Snackbar snackbar = Snackbar
                             .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
@@ -300,7 +299,7 @@ public class SignInActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

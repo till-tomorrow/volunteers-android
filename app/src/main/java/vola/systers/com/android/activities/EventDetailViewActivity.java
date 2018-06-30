@@ -16,9 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +30,7 @@ import java.util.ArrayList;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.model.Event;
-import vola.systers.com.android.utils.NetworkConnectivity;
+import vola.systers.com.android.utils.NetworkUtil;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,7 +52,7 @@ public class EventDetailViewActivity extends AppCompatActivity implements View.O
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -146,7 +144,7 @@ public class EventDetailViewActivity extends AppCompatActivity implements View.O
 
     private void registerEvent(){
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();
@@ -192,7 +190,7 @@ public class EventDetailViewActivity extends AppCompatActivity implements View.O
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(! new NetworkConnectivity().checkConnectivity(this)) {
+        if(! new NetworkUtil().checkConnectivity(this)) {
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, "Please Make Sure You are Connected to Internet!", Snackbar.LENGTH_LONG);
             View sbView = snackbar.getView();

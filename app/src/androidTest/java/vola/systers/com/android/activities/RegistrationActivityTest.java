@@ -1,33 +1,23 @@
 package vola.systers.com.android.activities;
 
 import android.os.SystemClock;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.view.View;
 
 import org.hamcrest.Matcher;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.model.Event;
+import vola.systers.com.android.ui.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.IsNot.not;
@@ -35,7 +25,7 @@ import static org.hamcrest.core.IsNot.not;
 
 public class RegistrationActivityTest {
         @Rule
-        public ActivityTestRule<MenuActivity> RegistrationActivityTestRule = new ActivityTestRule<MenuActivity>(MenuActivity.class);
+        public ActivityTestRule<MainActivity> RegistrationActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
         private static Matcher<Object> getEventItemName(final Matcher<String> itemMatcher){
             return new BoundedMatcher<Object, Event>(Event.class) {

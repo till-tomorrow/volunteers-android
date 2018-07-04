@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="vola.systers.com.android.activities.ProfileActivity"
+    tools:context="vola.systers.com.android.ui.profile.ProfileActivity"
     tools:showIn="@layout/activity_profile">
 
 
@@ -45,7 +45,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/emailLabel"
+                    android:id="@+id/tv_email"
                     android:layout_width="@dimen/formLabelWidth"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding"
@@ -54,11 +54,11 @@
                     android:textSize="@dimen/font_headings" />
 
                 <EditText
-                    android:id="@+id/input_email"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </LinearLayout>
 
@@ -68,19 +68,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/fnameLabel"
+                    android:id="@+id/tv_username"
                     android:layout_width="@dimen/formLabelWidth"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding"
-                    android:text="@string/fname"
+                    android:text="@string/username"
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/font_headings" />
 
                 <EditText
-                    android:id="@+id/input_fname"
+                    android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </LinearLayout>
 
@@ -90,19 +90,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lnameLabel"
+                    android:id="@+id/tv_name"
                     android:layout_width="@dimen/formLabelWidth"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding"
-                    android:text="@string/lname"
+                    android:text="Name"
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/font_headings" />
 
                 <EditText
-                    android:id="@+id/input_lname"
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </LinearLayout>
 
@@ -112,7 +112,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/roleTitle"
+                    android:id="@+id/tv_title"
                     android:layout_width="@dimen/formLabelWidth"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding"
@@ -121,7 +121,7 @@
                     android:textSize="@dimen/font_headings" />
 
                 <EditText
-                    android:id="@+id/role"
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -133,7 +133,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/affiliationsLabel"
+                    android:id="@+id/tv_affiliation"
                     android:layout_width="@dimen/formLabelWidth"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding"
@@ -142,35 +142,35 @@
                     android:textSize="@dimen/font_headings" />
 
                 <EditText
-                    android:id="@+id/input_affiliations"
+                    android:id="@+id/et_affiliations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_logout"
+                android:id="@+id/btn_log_out"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimenMarginTop"
-                android:textSize="@dimen/textSize"
-                android:textColor="@color/text_white"
                 android:background="@color/colorPrimary"
-                android:text="@string/logout"/>
+                android:text="@string/logout"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/textSize" />
 
             <Button
-                android:id="@+id/saveProfile"
+                android:id="@+id/btn_update_profile"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding"
                 android:layout_marginLeft="@dimen/dimenMarginTop"
                 android:layout_marginRight="@dimen/dimenMarginTop"
                 android:layout_marginTop="@dimen/dimenMarginTop"
-                android:layout_marginBottom="@dimen/padding"
-                android:visibility="gone"
-                android:textSize="@dimen/textSize"
-                android:textColor="@color/text_white"
                 android:background="@color/tangerine"
-                android:text="@string/save"/>
+                android:text="@string/update"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/textSize"
+                android:visibility="gone" />
 
             </LinearLayout>
 

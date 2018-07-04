@@ -1,8 +1,9 @@
 package vola.systers.com.android.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Event implements Serializable {
+public class Event implements Parcelable {
     private String id;
     private String name;
     private String startDate;
@@ -17,7 +18,7 @@ public class Event implements Serializable {
     private String status;
     private String country;
 
-    public Event(String id, String name, String startDate, String endDate, String startTime,String endTime,String locationName, String description,String city,String country,String longitude,String latitude,String status) {
+    public Event(String id, String name, String startDate, String endDate, String startTime, String endTime, String locationName, String description, String city, String country, String longitude, String latitude, String status) {
         this.id=id;
         this.name=name;
         this.startDate=startDate;
@@ -32,6 +33,56 @@ public class Event implements Serializable {
         this.latitude=latitude;
         this.longitude=longitude;
     }
+
+    protected Event(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        startDate = in.readString();
+        endDate = in.readString();
+        startTime = in.readString();
+        endTime = in.readString();
+        locationName = in.readString();
+        description = in.readString();
+        city = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        status = in.readString();
+        country = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(startDate);
+        dest.writeString(endDate);
+        dest.writeString(startTime);
+        dest.writeString(endTime);
+        dest.writeString(locationName);
+        dest.writeString(description);
+        dest.writeString(city);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        dest.writeString(status);
+        dest.writeString(country);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public String getId() {
         return id;

@@ -3,6 +3,7 @@ package vola.systers.com.android.activities;
 import android.os.SystemClock;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import vola.systers.com.android.R;
+import vola.systers.com.android.ui.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -20,12 +22,11 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import android.support.test.espresso.contrib.NavigationViewActions;
 import static org.hamcrest.CoreMatchers.not;
 
 public class NavigationMenuTest {
     @Rule
-    public ActivityTestRule<MenuActivity> NavigationMenuTestRule = new ActivityTestRule<MenuActivity>(MenuActivity.class);
+    public ActivityTestRule<MainActivity> NavigationMenuTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
     private static ViewAction actionOpenDrawer() {
         return new ViewAction() {

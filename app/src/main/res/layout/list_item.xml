@@ -7,7 +7,7 @@
     >
 
         <TextView
-            android:id="@+id/event_name"
+            android:id="@+id/tv_event_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/padding_bottom"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/rel_layout_startDate"
-            android:layout_below="@+id/event_name"
+            android:layout_below="@+id/tv_event_name"
             android:padding="@dimen/padding"
             android:layout_marginLeft="@dimen/margin_left"
             >

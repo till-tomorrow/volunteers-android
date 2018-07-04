@@ -38,7 +38,7 @@
     <string name="nav_schedule">Schedule</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_share">Share App</string>
-    <string name="verifying">Verifying Account...</string>
+    <string name="verifying">Verifying Account…</string>
     <string name="invalid_password">Password should atleast be 6 characters long</string>
     <string name="invalid_username">Please enter a valid Email</string>
     <string name="empty_password">Please enter your password</string>
@@ -50,9 +50,9 @@
     <string name="attendee_type">Attendee Type : </string>
     <string name="volunteer">Volunteer</string>
     <string name="student">Student</string>
-    <string name="profile">PROFILE</string>
+    <string name="profile">Profile</string>
     <string name="others">Others</string>
-    <string name="save">SAVE</string>
+    <string name="save">Save</string>
 
     <string name="email">Email : </string>
     <string name="fname">First Name : </string>
@@ -83,4 +83,35 @@
     <string name="location">Location :</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="logo">Logo</string>
+    <string name="username">Username</string>
+    <string name="signin_successful">SignIn successful</string>
+    <string name="enter_username">Enter username</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login_unsuccessful">Login unsuccessful</string>
+    <string name="signup_successful">Sign Up successful</string>
+    <string name="signup_failed">Sign Up failed</string>
+    <string name="enter_email">Enter an email address</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="confirm_password">Please confirm the password</string>
+    <string name="passwords_mismatch">Passwords did not match</string>
+    <string name="signing_up">Signing up...</string>
+    <string name="signing_in">Signing in...</string>
+    <string name="fetching_your_profile">Fetching your profile</string>
+    <string name="failed_fetch_profile">Failed to fetch profile</string>
+    <string name="update">Update</string>
+    <string name="failed_update_profile">Failed to update profile</string>
+    <string name="logout_failed">Failed to Logout :%s</string>
+    <string name="unknown_reason">Unknown reason</string>
+    <string name="logout_successful">Logged out successfully</string>
+    <string name="updating_your_profile">Updating your profile</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_affiliation">Enter affiliation</string>
+    <string name="fetch_event_details">Fetching event details</string>
+    <string name="event_bookmarked">Event bookmarked</string>
+    <string name="registration_failed">Registration failed</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="enter_affiliations">Enter affiliations</string>
+    <string name="attendence_type">Please select attendance type</string>
+    <string name="failed_to_fetch_events">Failed to get events</string>
 </resources>

@@ -3,7 +3,7 @@ package vola.systers.com.android.ui.eventdetails;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.Event;
 import vola.systers.com.android.ui.base.MvpView;
 
 /**

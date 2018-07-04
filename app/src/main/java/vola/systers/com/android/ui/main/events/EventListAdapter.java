@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.Event;
 
 public class EventListAdapter extends ArrayAdapter<Event> {
 

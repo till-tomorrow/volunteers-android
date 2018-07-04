@@ -1,4 +1,4 @@
-package vola.systers.com.android.model;
+package vola.systers.com.android.data.model;
 
 public class DateTime {
     private Integer year;

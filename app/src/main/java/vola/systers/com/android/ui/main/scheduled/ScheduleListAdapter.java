@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.model.DateTime;
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.DateTime;
+import vola.systers.com.android.data.model.Event;
 
 public class ScheduleListAdapter extends ArrayAdapter<Event> implements View.OnClickListener{
 

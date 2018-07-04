@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.Event;
 import vola.systers.com.android.ui.eventdetails.EventDetailsActivity;
 
 public class StarredFragment extends Fragment implements StaredMvpView {

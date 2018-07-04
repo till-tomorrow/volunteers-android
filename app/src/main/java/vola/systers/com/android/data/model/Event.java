@@ -1,10 +1,14 @@
-package vola.systers.com.android.model;
+package vola.systers.com.android.data.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@Entity
 public class Event implements Parcelable {
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String name;
     private String startDate;
     private String endDate;
@@ -18,7 +22,7 @@ public class Event implements Parcelable {
     private String status;
     private String country;
 
-    public Event(String id, String name, String startDate, String endDate, String startTime, String endTime, String locationName, String description, String city, String country, String longitude, String latitude, String status) {
+    public Event(int id, String name, String startDate, String endDate, String startTime, String endTime, String locationName, String description, String city, String country, String longitude, String latitude, String status) {
         this.id=id;
         this.name=name;
         this.startDate=startDate;
@@ -35,7 +39,7 @@ public class Event implements Parcelable {
     }
 
     protected Event(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         name = in.readString();
         startDate = in.readString();
         endDate = in.readString();
@@ -50,28 +54,6 @@ public class Event implements Parcelable {
         country = in.readString();
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(startDate);
-        dest.writeString(endDate);
-        dest.writeString(startTime);
-        dest.writeString(endTime);
-        dest.writeString(locationName);
-        dest.writeString(description);
-        dest.writeString(city);
-        dest.writeString(latitude);
-        dest.writeString(longitude);
-        dest.writeString(status);
-        dest.writeString(country);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     public static final Creator<Event> CREATOR = new Creator<Event>() {
         @Override
         public Event createFromParcel(Parcel in) {
@@ -84,7 +66,7 @@ public class Event implements Parcelable {
         }
     };
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -122,4 +104,25 @@ public class Event implements Parcelable {
 
     public String getLongitude() { return longitude; }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(startDate);
+        parcel.writeString(endDate);
+        parcel.writeString(startTime);
+        parcel.writeString(endTime);
+        parcel.writeString(locationName);
+        parcel.writeString(description);
+        parcel.writeString(city);
+        parcel.writeString(latitude);
+        parcel.writeString(longitude);
+        parcel.writeString(status);
+        parcel.writeString(country);
+    }
 }

@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import vola.systers.com.android.R;
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.Event;
 import vola.systers.com.android.ui.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onData;

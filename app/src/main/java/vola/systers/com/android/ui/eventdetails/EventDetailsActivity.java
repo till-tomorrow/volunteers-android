@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vola.systers.com.android.R;
-import vola.systers.com.android.model.Event;
+import vola.systers.com.android.data.model.Event;
 import vola.systers.com.android.ui.base.BaseActivity;
 import vola.systers.com.android.ui.registration.RegistrationActivity;
 

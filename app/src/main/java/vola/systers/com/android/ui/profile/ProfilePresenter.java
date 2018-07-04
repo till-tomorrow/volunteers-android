@@ -32,10 +32,4 @@ public class ProfilePresenter extends BasePresenter<ProfileMvpView> {
         //TODO: Make the retrofit request here
         //TODO: Call the getMvpView().profileUpdateSuccessful() or getMvpView().profileUpdateFailed() implemented in ProfileActivity here.
     }
-
-    public void doLogout() {
-        checkViewAttached();
-        //TODO: Make the retrofit request here
-        //TODO: Call the getMvpView().logoutSuccessful or getMvpView().logoutFailed() implemented in ProfileActivity here.
-    }
 }

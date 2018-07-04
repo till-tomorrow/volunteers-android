@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,160 +10,124 @@
     tools:showIn="@layout/activity_registration">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.CoordinatorLayout
-            android:layout_height="fill_parent"
-            android:layout_width="fill_parent"
-            android:textAlignment="center"
-            android:id="@+id/coordinator_layout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-             <TextView
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content"
-                 android:textAlignment="center"
-                 android:id="@+id/title"
-                 android:padding="@dimen/textviewMargin"
-                 android:textSize="@dimen/textViewHeading"
-                 android:textColor="@color/text_black"/>
-            <LinearLayout
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:textAlignment="center"
+                android:id="@+id/title"
+                android:padding="@dimen/textviewMargin"
+                android:textSize="@dimen/textViewHeading"
+                android:textColor="@color/text_black"/>
 
-                <TextView
-                    android:layout_width="@dimen/formLabelWidth"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/emailLabel"
-                    android:layout_marginLeft="@dimen/padding"
-                    android:textSize="@dimen/font_headings"
-                    android:text="@string/email"
-                    android:textColor="@color/text_black"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white" />
+            </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/formLabelWidth"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fnameLabel"
-                    android:layout_marginLeft="@dimen/padding"
-                    android:textSize="@dimen/font_headings"
-                    android:text="@string/fname"
-                    android:textColor="@color/text_black"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1" />
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/fname"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white" />
+            </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/formLabelWidth"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/lnameLabel"
-                    android:layout_marginLeft="@dimen/padding"
-                    android:textSize="@dimen/font_headings"
-                    android:text="@string/lname"
-                    android:textColor="@color/text_black"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_name"
+                    android:id="@+id/et_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1" />
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/lname"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white" />
+            </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="@dimen/formLabelWidth"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/affiliationsLabel"
-                    android:layout_marginLeft="@dimen/padding"
-                    android:textSize="@dimen/font_headings"
-                    android:text="@string/affiliations"
-                    android:textColor="@color/text_black"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/et_affiliations"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/affiliations"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/white" />
+            </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_top"
-                android:orientation="horizontal" >
+                android:textAlignment="center"
+                android:id="@+id/type"
+                android:layout_marginLeft="@dimen/padding"
+                android:textSize="@dimen/font_headings"
+                android:text="@string/attendee_type"
+                android:textColor="@color/text_black"/>
 
-                <TextView
+            <RadioGroup
+                android:id="@+id/rad_attendees"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rad_student"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:id="@+id/type"
-                    android:layout_marginLeft="@dimen/padding"
-                    android:textSize="@dimen/font_headings"
-                    android:text="@string/attendee_type"
-                    android:textColor="@color/text_black"/>
+                    android:checked="true"
+                    android:text="@string/student" />
 
-                <RadioGroup
-                    android:id="@+id/rad_attendees"
+                <RadioButton
+                    android:id="@+id/rad_volunteer"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:text="@string/volunteer" />
 
-                    <RadioButton
-                        android:id="@+id/rad_student"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="@string/student" />
+                <RadioButton
+                    android:id="@+id/rad_others"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/others" />
 
-                    <RadioButton
-                        android:id="@+id/rad_volunteer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/volunteer" />
-
-                    <RadioButton
-                        android:id="@+id/rad_others"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/others" />
-
-                </RadioGroup>
-
-            </LinearLayout>
+            </RadioGroup>
 
             <Button
                 android:id="@+id/btn_register"
@@ -173,12 +138,9 @@
                 android:textSize="@dimen/textViewContent"
                 android:textColor="@color/text_white"
                 android:background="@color/colorPrimary"
-                android:onClick="registerToEvent"
                 android:text="@string/register_event"/>
 
         </LinearLayout>
-
-    </android.support.design.widget.CoordinatorLayout>
 
     </ScrollView>
 

@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,14 +68,14 @@ public class SignInActivity extends BaseActivity implements SignInMvpView {
         showProgressDialog();
     }
 
-    @OnClick(R.id.tv_skip)
+    @OnClick(R.id.btn_skip)
     public void skip() {
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @OnClick(R.id.tv_sign_up)
+    @OnClick(R.id.btn_sign_up)
     public void signUp() {
         intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
@@ -85,7 +85,8 @@ public class SignInActivity extends BaseActivity implements SignInMvpView {
     @Override
     public void signInSuccessful() {
         hideProgressDialog();
-        Toast.makeText(this, R.string.signin_successful, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.signin_successful,
+                Snackbar.LENGTH_SHORT).show();
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -97,7 +98,8 @@ public class SignInActivity extends BaseActivity implements SignInMvpView {
         if (TextUtils.isEmpty(errorMessage)) {
             errorMessage = getString(R.string.login_unsuccessful);
         }
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @Override

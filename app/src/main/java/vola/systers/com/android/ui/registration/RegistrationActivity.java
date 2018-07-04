@@ -4,10 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,8 +22,8 @@ import vola.systers.com.android.ui.base.BaseActivity;
 public class RegistrationActivity extends BaseActivity implements RegistrationMvpView {
 
     @BindView(R.id.et_email) EditText etEmail;
-    @BindView(R.id.et_username) EditText etUsername;
-    @BindView(R.id.et_name) EditText etName;
+    @BindView(R.id.et_first_name) EditText etFirstName;
+    @BindView(R.id.et_last_name) EditText etLastName;
     @BindView(R.id.et_affiliations) EditText etAffiliations;
     @BindView(R.id.rad_attendees) RadioGroup radAttendees;
 
@@ -52,15 +52,22 @@ public class RegistrationActivity extends BaseActivity implements RegistrationMv
     public void register() {
         //TODO: Add more validation
         String email = etEmail.getText().toString();
-        String username = etUsername.getText().toString();
+        String username = etEmail.getText().toString();
         if (TextUtils.isEmpty(username)) {
-            etUsername.setError(getString(R.string.enter_username));
+            etEmail.setError(getString(R.string.enter_username));
             return;
         }
 
-        String name = etName.getText().toString();
-        if (TextUtils.isEmpty(name)) {
-            etName.setError(getString(R.string.enter_name));
+        String firstName = etFirstName.getText().toString();
+        if (TextUtils.isEmpty(firstName)) {
+            etFirstName.setError(getString(R.string.enter_username));
+            return;
+        }
+
+
+        String lastName = etLastName.getText().toString();
+        if (TextUtils.isEmpty(lastName)) {
+            etLastName.setError(getString(R.string.enter_name));
             return;
         }
 
@@ -79,24 +86,28 @@ public class RegistrationActivity extends BaseActivity implements RegistrationMv
         } else if (checkedButton == R.id.rad_others) {
             attendanceType = "Others";
         } else {
-            Toast.makeText(this, R.string.attendence_type, Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), R.string.attendence_type,
+                    Snackbar.LENGTH_SHORT).show();
             return;
         }
 
         showProgressDialog();
-        registrationPresenter.doRegistration(email, username, name, affiliations, attendanceType);
+        registrationPresenter.doRegistration(email, firstName, lastName, affiliations,
+                attendanceType);
     }
 
     @Override
     public void registrationSuccessful() {
         hideProgressDialog();
-        Toast.makeText(this, R.string.registration_successful, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.registration_successful,
+                Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void registrationFailed(@Nullable String errorMessage) {
         hideProgressDialog();
-        Toast.makeText(this, R.string.registration_failed, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.registration_failed,
+                Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

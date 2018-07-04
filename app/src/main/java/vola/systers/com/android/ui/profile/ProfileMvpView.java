@@ -22,10 +22,6 @@ public interface ProfileMvpView extends MvpView {
 
     void profileUpdateFailed(@Nullable String errorMessage);
 
-    void logoutSuccessful();
-
-    void logoutFailed(@Nullable String errorMessage);
-
     void showProgressDialog(@NonNull String message);
 
     void hideProgressDialog();

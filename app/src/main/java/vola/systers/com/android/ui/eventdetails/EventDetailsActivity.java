@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +65,8 @@ public class EventDetailsActivity extends BaseActivity implements EventDetailsMv
     @OnClick(R.id.btn_bookmark)
     public void bookmarkEvent() {
         //TODO: Bookmark the event here
-        Toast.makeText(this, R.string.event_bookmarked, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.event_bookmarked,
+                Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -81,7 +82,8 @@ public class EventDetailsActivity extends BaseActivity implements EventDetailsMv
         if (TextUtils.isEmpty(errorMessage)) {
             errorMessage = getString(R.string.signup_failed);
         }
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @Override

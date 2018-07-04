@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,7 +88,8 @@ public class SignUpActivity extends BaseActivity implements SignUpMvpView {
         }
 
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, R.string.passwords_mismatch, Toast.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), R.string.passwords_mismatch,
+                    Snackbar.LENGTH_SHORT).show();
             return;
         }
 
@@ -96,14 +97,14 @@ public class SignUpActivity extends BaseActivity implements SignUpMvpView {
         showProgressDialog();
     }
 
-    @OnClick(R.id.tv_sign_in)
+    @OnClick(R.id.btn_sign_in)
     public void signIn() {
         intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @OnClick(R.id.tv_skip)
+    @OnClick(R.id.btn_skip)
     public void skip() {
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -113,7 +114,8 @@ public class SignUpActivity extends BaseActivity implements SignUpMvpView {
     @Override
     public void signUpSuccessful() {
         hideProgressDialog();
-        Toast.makeText(this, R.string.signup_successful, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.signup_successful,
+                Snackbar.LENGTH_SHORT).show();
         intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();
@@ -125,7 +127,8 @@ public class SignUpActivity extends BaseActivity implements SignUpMvpView {
         if (TextUtils.isEmpty(errorMessage)) {
             errorMessage = getString(R.string.signup_failed);
         }
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @Override

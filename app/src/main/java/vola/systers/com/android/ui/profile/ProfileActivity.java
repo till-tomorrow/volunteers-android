@@ -1,16 +1,15 @@
 package vola.systers.com.android.ui.profile;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +17,6 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import vola.systers.com.android.R;
 import vola.systers.com.android.ui.base.BaseActivity;
-import vola.systers.com.android.ui.signin.SignInActivity;
 
 /**
  * Created by haroon on 28/05/18.
@@ -75,13 +73,13 @@ public class ProfileActivity extends BaseActivity implements ProfileMvpView {
         profilePresenter.detachView();
     }
 
-    @OnClick(R.id.btn_log_out)
-    public void logout() {
-        profilePresenter.doLogout();
-    }
-
     @OnClick(R.id.btn_update_profile)
     public void updateProfile() {
+        String email = etEmail.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError(getString(R.string.enter_email));
+            return;
+        }
         String username = etUsername.getText().toString();
         if (TextUtils.isEmpty(username)) {
             etUsername.setError(getString(R.string.enter_username));
@@ -150,7 +148,8 @@ public class ProfileActivity extends BaseActivity implements ProfileMvpView {
         if (TextUtils.isEmpty(errorMessage)) {
             errorMessage = getString(R.string.failed_fetch_profile);
         }
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @Override
@@ -177,25 +176,8 @@ public class ProfileActivity extends BaseActivity implements ProfileMvpView {
         if (TextUtils.isEmpty(errorMessage)) {
             errorMessage = getString(R.string.failed_update_profile);
         }
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void logoutSuccessful() {
-        hideProgressDialog();
-        Toast.makeText(this, R.string.logout_successful, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void logoutFailed(@Nullable String errorMessage) {
-        if (TextUtils.isEmpty(errorMessage)) {
-            errorMessage = getString(R.string.unknown_reason);
-        }
-        Toast.makeText(this, String.format(getString(R.string.logout_failed), errorMessage),
-                Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @OnTextChanged(value = {R.id.et_username, R.id.et_name, R.id.et_title, R.id.et_affiliations},

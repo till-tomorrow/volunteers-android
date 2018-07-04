@@ -8,77 +8,92 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="vola.systers.com.android.ui.signin.SignInActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fitsSystemWindows="true">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/dimenLayoutMargin"
-            tools:context=".SignInActivity">
+            android:layout_height="150dp"
+            android:contentDescription="@string/logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/logo" />
 
-            <ImageView
-                android:contentDescription="@string/logo"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/heightImageLogo"
-                android:src="@mipmap/logo" />
-
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:hint="@string/username"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword" />
-
-
-            <Button
-                android:id="@+id/btn_sign_in"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimenMarginBottom"
-                android:layout_marginTop="@dimen/dimenMarginTop"
-                android:background="@color/colorPrimary"
-                android:padding="@dimen/padding"
-                android:text="@string/sign_in_button_text"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/textSize" />
+                android:layout_marginBottom="10dp"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_sign_up"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/padding_bottom"
-                android:gravity="center"
-                android:text="@string/signup_text"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/textSize" />
+        <Button
+            android:id="@+id/btn_sign_in"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#54BCEB"
+            android:text="@string/sign_in_button_text"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/tv_skip"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimenMarginBottom"
-                android:gravity="center"
-                android:text="@string/skip_login"
-                android:textColor="@color/tangerine"
-                android:textSize="@dimen/font"
-                android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_reset_password"
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@null"
+            android:text="@string/forgot_password_button_text"
+            android:textAllCaps="false"
+            android:textColor="#232323"
+            android:layout_marginBottom="10dp"/>
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_sign_up"
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@null"
+            android:text="@string/signup_text"
+            android:textAllCaps="false"
+            android:textColor="#232323"
+            android:layout_marginBottom="10dp"/>
 
-    </ScrollView>
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="@null"
+            android:text="@string/skip_login"
+            android:textAllCaps="false"
+            android:textColor="#232323" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

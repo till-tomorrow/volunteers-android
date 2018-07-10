@@ -1,5 +1,8 @@
 package vola.systers.com.android.data.model;
 
+import lombok.Data;
+
+@Data
 public class DateTime {
     private Integer year;
     private Integer month;
@@ -15,29 +18,5 @@ public class DateTime {
         this.hour=Integer.parseInt(eventTime[0]);
         this.minute=Integer.parseInt(eventTime[1]);
         this.second=Integer.parseInt(eventTime[2]);
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public Integer getMonth() {
-        return month;
-    }
-
-    public Integer getDate() {
-        return date;
-    }
-
-    public Integer getHour() {
-        return hour;
-    }
-
-    public Integer getMinute() {
-        return minute;
-    }
-
-    public Integer getSecond() {
-        return second;
     }
 }

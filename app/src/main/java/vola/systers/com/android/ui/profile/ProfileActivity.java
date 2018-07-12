@@ -10,6 +10,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,8 @@ import vola.systers.com.android.ui.base.BaseActivity;
 
 public class ProfileActivity extends BaseActivity implements ProfileMvpView {
 
+    @BindView(R.id.img_profile)
+    ImageView imgProfile;
     @BindView(R.id.et_email)
     EditText etEmail;
     @BindView(R.id.et_username)
@@ -126,10 +131,15 @@ public class ProfileActivity extends BaseActivity implements ProfileMvpView {
     }
 
     @Override
-    public void profileFetchSuccessful(@NonNull String email, @NonNull String username,
-                                       @NonNull String name, @NonNull String title,
-                                       @NonNull String affiliation) {
+    public void profileFetchSuccessful(@NonNull String profileUrl, @NonNull String email,
+                                       @NonNull String username, @NonNull String name,
+                                       @NonNull String title, @NonNull String affiliation) {
         hideProgressDialog();
+        Picasso.get()
+                .load(profileUrl)
+                .resize(150, 150)
+                .centerCrop()
+                .into(imgProfile);
         etEmail.setText(email);
         etUsername.setText(username);
         etName.setText(name);

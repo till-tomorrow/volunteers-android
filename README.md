@@ -77,7 +77,8 @@ Now that you have cloned the repo:
 4. Let Android studio import the project, sync, run and build the Gradle.
 5. If Gradle finishes to build without error run the project by clicking on the play button on the tool bar.
 6. Wait for a few seconds and the app should start on your device(android phone or emulator)
-
+P.S.: Follow [Github Flow](https://help.github.com/articles/github-flow/) for collaboration!
+Happy Contributing:)
 
 ## Troubleshooting/Issues
 
